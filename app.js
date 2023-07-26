@@ -59,6 +59,10 @@ function calculate(birthDate){
 
     let message = `Você nasceu a ${years} anos, ${months} meses e ${days} dias!`;
     console.log(message);
+
+    YEARS.innerHTML = (novaData.toISOString().slice(0, 4) - 1970);
+    MONTHS.innerHTML = novaData.getMonth();
+    DAYS.innerHTML = (novaData.getDate());
 }
 
 calculate();
