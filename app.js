@@ -1,5 +1,3 @@
-console.log("teste");
-
 const DAY = document.querySelector('#day');
 const MONTH = document.querySelector('#month');
 const YEAR = document.querySelector('#year');
@@ -8,61 +6,69 @@ const DAYS = document.querySelector('#days');
 const MONTHS = document.querySelector('#months');
 const YEARS = document.querySelector('#years');
 
-let validDay, validMonth, validYear;
+const DIV = document.createElement('div');
 
-// dd/MM/yyyy
-//const now = new Date().toLocaleString().substring(0, 10);
 const now = new Date();
 
 let birthDate = new Date();
 
-DAY.addEventListener('keyup', () => {
-    validDay = DAY.value;
-    if (validDay < 1 || validDay > 31){
-        console.log("Insira um dia válido");
+DAY.addEventListener('blur', () => {
+    const dia = document.getElementById('dia');
+
+    if (DAY.value < 1 || DAY.value > 31){
+        DIV.innerHTML = "Insert a valid day";
+        dia.append(DIV);
+    } else if (DAY.value === null || DAY.value > 0 && DAY.value < 32){
+        DIV.innerHTML = '';
     }
-    birthDate.setDate(validDay);
+
+    birthDate.setDate(DAY.value);
 });
 
-MONTH.addEventListener('keyup', () => {
-    validMonth = MONTH.value;
-    if (validMonth < 1 || validMonth > 12) {
-        console.log("insira um mês válido");
+MONTH.addEventListener('blur', () => {
+    const mes = document.getElementById('mes');
+
+    if (MONTH.value < 1 || MONTH.value > 12) {
+        DIV.innerHTML = "Insert a valid month";
+        mes.append(DIV);
+    } else if (MONTH.value === null || MONTH.value > 0 && MONTH.value < 13){
+        DIV.innerHTML = '';
     }
-    if (validDay > 28 && validMonth == 2){
-        console.log("fevereiro só tem 28 dias");
+
+    if (DAY.value > 28 && MONTH.value == 2){
+        DIV.innerHTML = "February has 28/29 days";
+        mes.append(DIV);
+    } else if (MONTH.value === null){
+        DIV.innerHTML = '';
     }
-    birthDate.setMonth(validMonth-1);
+    birthDate.setMonth(MONTH.value-1);
 });
 
-YEAR.addEventListener('keyup', () => {
-    validYear = YEAR.value;
-    if (validYear < now.getFullYear() - 120 || validYear > now.getFullYear()){
-        console.log("Insira um ano válido");
+YEAR.addEventListener('blur', () => {
+    const ano  = document.getElementById('ano');
+
+    if (YEAR.value < now.getFullYear() - 120 || YEAR.value > now.getFullYear()){
+        DIV.innerHTML = "Insert a valid year";
+        ano.append(DIV);
     }
 
-    if (validYear % 4 == 0){
+    if (YEAR.value % 4 == 0){
         console.log("ano bissexto");
     }
-    birthDate.setFullYear(validYear);
+    birthDate.setFullYear(YEAR.value);
     calculate(birthDate);
 });
 
 function calculate(birthDate){
-    console.log(birthDate);
-
 
     let novaData = new Date(now - birthDate);
-    console.log(novaData)
-    let novaData2 = (novaData.toISOString().slice(0, 4) - 1970) + "Y " + novaData.getMonth() + "M " + (novaData.getDate()-1 + "D ");
-    console.log(novaData2);
 
-    let message = `Você nasceu a ${years} anos, ${months} meses e ${days} dias!`;
-    console.log(message);
+    if (((novaData.getFullYear()).toString() - 1970) < 100){
+        (YEARS.innerHTML = (novaData.getFullYear()).toString() - 1970);
+    }
 
-    YEARS.innerHTML = (novaData.toISOString().slice(0, 4) - 1970);
     MONTHS.innerHTML = novaData.getMonth();
     DAYS.innerHTML = (novaData.getDate());
 }
 
-calculate();
+
