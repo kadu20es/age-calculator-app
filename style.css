@@ -83,12 +83,12 @@ input:hover {
 .icon > svg {
     width: 30px;
 }
-hr {
+/*hr {
     width: 80%;
     position:absolute;
     z-index: 1;
     border: 1px solid #e9e9e9;
-}
+}*/
 
 
 
@@ -103,7 +103,6 @@ p > span {
     color: var(--purpleNumbers);
 }
 
-
 .attribution {
     font-size: 11px;
     text-align: center;
@@ -111,67 +110,86 @@ p > span {
 }
 .attribution a { color: hsl(228, 45%, 44%); }
 
-@media screen and (min-width: 600px){
+
+
+@media screen and (min-width: 640px){
     .main {
         background-color:#FFF;
-        width: 640px;
-        padding: 3em 1.5em;
-        border-radius: 20px 20px 80px 20px;
+        width: 845px;
+        height: 680px;
+        padding: 50px 55px;
+        border-radius: 20px 20px 25% 20px;
+        display: grid;
+        grid-template-rows: 25%;
     }
 
     .inputs {
         width: 100%;
         display: inline-grid;
-        grid-template-columns: repeat(3, 20%);
-        gap: 2px 15px;
+        grid-template-columns: repeat(4, 23%);
+        gap: 30px;
+
+        > label {
+            color: var(--labelColors);
+            font-size: 0.8em;
+            font-weight: bold;
+
+            > input {
+                margin-top: 10px;
+                width: 11rem;
+                height: 4.5rem;
+                border-radius: 7px;
+                padding: 0.5em;
+                font-size: 30px;
+                font-weight: bold;
+                border: 2px solid var(--borderColors);
+
+            }
+
+            > input:hover {
+                border: 2px solid #ce94e6 !important;
+            }
+
+            > .error {
+                text-align: center;
+                color: #FF5555;
+                font-size: 0.6rem;
+                font-style: italic;
+                font-weight:lighter;
+                margin: 10px 0;
+            }
+        }
     }
 
-    input {
+    .line {
         width: 100%;
-        border-radius: 7px;
-        padding: 0.5em;
-        font-size: 1.2em;
-        font-weight: bold;
-        border: 2px solid var(--borderColors);
-    }
-    input:active {
-        border: 2px solid #ce94e6 !important;
-    }
-    input:focus {
-        border: 2px solid #ce94e6 !important;
-    }
-    input:hover {
-        border: 2px solid #ce94e6 !important;
-    }
-
-    .icon {
-
-        background-color: var(--purbleIcon);
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-        margin: 2em auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+        align-items: end;
         z-index: 2;
     }
-    .icon > svg {
-        width: 30px;
-    }
+
     hr {
-        width: 40%;
+        color: #707070;
         position:absolute;
-        z-index: 1;
         border: 1px solid #e9e9e9;
+        z-index: -1;
+        width: 740px;
+    }
+
+    svg {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        background-color: #874bff;
+        border: 1.2rem solid #874bff;
+        display: block;
     }
 
 
 
     p {
-        font-size: 3.5em;
+        font-size: 6.5em;
         font-weight: bolder;
         font-style: italic;
         line-height: 1.1em;

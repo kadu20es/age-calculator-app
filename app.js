@@ -16,8 +16,9 @@ DAY.addEventListener('blur', () => {
     const dia = document.getElementById('dia');
 
     if (DAY.value < 1 || DAY.value > 31){
-        DIV.innerHTML = "Insert a valid day";
+        DIV.innerHTML = "Must be a valid day";
         dia.append(DIV);
+        DIV.setAttribute('class', 'error');
     } else if (DAY.value === null || DAY.value > 0 && DAY.value < 32){
         DIV.innerHTML = '';
     }
@@ -29,7 +30,7 @@ MONTH.addEventListener('blur', () => {
     const mes = document.getElementById('mes');
 
     if (MONTH.value < 1 || MONTH.value > 12) {
-        DIV.innerHTML = "Insert a valid month";
+        DIV.innerHTML = "Must be a valid month";
         mes.append(DIV);
     } else if (MONTH.value === null || MONTH.value > 0 && MONTH.value < 13){
         DIV.innerHTML = '';
@@ -48,7 +49,7 @@ YEAR.addEventListener('blur', () => {
     const ano  = document.getElementById('ano');
 
     if (YEAR.value < now.getFullYear() - 120 || YEAR.value > now.getFullYear()){
-        DIV.innerHTML = "Insert a valid year";
+        DIV.innerHTML = "Must be in the past";
         ano.append(DIV);
     }
 
