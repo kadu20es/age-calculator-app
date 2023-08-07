@@ -128,20 +128,25 @@ p > span {
 .attribution a { color: hsl(228, 45%, 44%); }
 
 
-
 @media screen and (min-width: 600px){
 
     main {
         width: 60rem;
+        height: 80%;
         padding: 3.5rem;
         border-radius: 2rem 2rem 15rem 2rem;
     }
 
     .inputs {
-        /*width: 100%;
+        /*display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: flex-start;*/
+
+        width: 100%;
         display: inline-grid;
         grid-template-columns: repeat(4, 23%);
-        gap: 2.5rem;*/
+        gap: 2.5rem;
 
 
         > label {
@@ -150,6 +155,7 @@ p > span {
             margin-bottom: 0.350rem;
             margin-left: 5px;
             font-weight: bold;
+            display: block;
 
             > input {
                 margin-top: 10px;
@@ -198,10 +204,9 @@ p > span {
     }
 
     p {
-        font-size: 6.5em;
+        font-size: 6rem;
         font-weight: bolder;
         font-style: italic;
-        line-height: 1.1em;
     }
 
     p > span {
