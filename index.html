@@ -13,32 +13,35 @@
   <script src="./app.js" defer></script>
 </head>
 <body>
-  <div class="main">
-    <div class="inputs">
-      <label for="day" id="dia">DAY
-        <input type="text" name="day" id="day" placeholder="DD">
+  <main>
+    <form class="inputs">
+      <label for="day" class="day-label">DAY
+        <input type="text" name="day" id="day" placeholder="DD"  maxlength="2" minlength="1" autocomplete="off">
+        <p class="error-msg-day">Must be a valid day</p>
       </label>
-      <label for="month" id="mes">MONTH
-        <input type="text" name="month" id="month" placeholder="MM">
+      <label for="month" class="month-label">MONTH
+        <input type="text" name="month" id="month" placeholder="MM"  maxlength="2" minlength="1" autocomplete="off">
+        <p class="error-msg-month">Must be a valid month</p>
       </label>
-      <label for="year" id="ano">YEAR
-        <input type="text" name="year" id="year" placeholder="YYYY">
+      <label for="year" class="year-label">YEAR
+        <input type="text" name="year" id="year" placeholder="YYYY" maxlength="4" minlength="4" autocomplete="off">
+        <p class="error-msg-year">Must be in past</p>
       </label>
-    </div>
+    </form>
 
 
-    <div class="line">
+    <hr/>
+    <button>
       <svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
-      <hr/>
-    </div>
+    </button>
 
 
     <div class="result">
-      <p><span id="years">--</span> years</p>
-      <p><span id="months">--</span> months</p>
-      <p><span id="days">--</span> days</p>
+      <p><span id="yearsResult">--</span> years</p>
+      <p><span id="monthsResult">--</span> months</p>
+      <p><span id="daysResult">--</span> days</p>
     </div>
-  </div>
+  </main>
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.<br/>

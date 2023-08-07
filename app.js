@@ -2,95 +2,134 @@ const DAY = document.querySelector('#day');
 const MONTH = document.querySelector('#month');
 const YEAR = document.querySelector('#year');
 
-const DAYS = document.querySelector('#days');
-const MONTHS = document.querySelector('#months');
-const YEARS = document.querySelector('#years');
+const daysResult = document.querySelector('#daysResult');
+const monthResult = document.querySelector('#monthsResult');
+const yearsResult = document.querySelector('#yearsResult');
 
-const DIV = document.createElement('div');
-DIV.setAttribute('class', 'error');
+const errorMsgDay = document.querySelector(".error-msg-day");
+const errorMsgMonth = document.querySelector(".error-msg-month");
+const errorMsgYear = document.querySelector(".error-msg-year");
 
-const now = new Date();
+const labelDay = document.querySelector('.day-label');
+const labelMonth = document.querySelector('.month-label');
+const labelYear = document.querySelector('.year-label');
 
-let birthDate = new Date();
-console.log(MONTH.value);
+const button = document.querySelector("button");
 
+let currentDate = new Date();
+let currentDay = currentDate.getDate();
+let currentMonth = currentDate.getMonth() + 1;
+let currentYear = currentDate.getFullYear();
 
-DAY.addEventListener('blur', () => {
-    const dia = document.getElementById('dia');
+                    //   Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+const normalYearMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    if (DAY.value == '') {
-        DIV.innerHTML = "This field is required";
-        dia.append(DIV);
+                  // Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+const leapYearMonths = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    } else if (DAY.value < 1 || DAY.value > 31){
-        DIV.innerHTML = "Must be a valid day";
-        dia.append(DIV);
+const bYear = currentYear % 4 === 0;
 
-    } else if (DAY.value === null || DAY.value > 0 && DAY.value < 32){
-        DIV.innerHTML = '';
+// ----------------------------------------------------------------------
 
+function printResults(totalYears, totalMonths, totalDays){
+    yearsResult.innerHTML = totalYears;
+    monthResult.innerHTML = totalMonths;
+    daysResult.innerHTML = totalDays;
+}
+
+function applyErrorStyle(data, errorMsg, label){
+    data.classList.add("input-error");
+    errorMsg.style.display = "flex";
+    label.style.color = "#FF5555";
+    return;
+}
+
+function removeErrorStyle(){
+    DAY.classList.remove("input-error");
+    MONTH.classList.remove("input-error");
+    YEAR.classList.remove("input-error");
+    errorMsgDay.style.display = "none";
+    errorMsgMonth.style.display = "none";
+    errorMsgYear.style.display = "none";
+    labelDay.style.color = "#707070";
+    labelMonth.style.color = "#707070";
+    labelYear.style.color = "#707070";
+    return;
+}
+
+function validateDay(inputDay) {
+    if (inputDay < 1 || inputDay > 31) {
+        applyErrorStyle(DAY, errorMsgDay, labelDay);
+        return false;
+    }
+    return true;
+}
+
+function validateMonth(inputMonth, inputDay){
+    if (inputMonth < 1 || inputMonth > 12) {
+        applyErrorStyle(MONTH, errorMsgMonth, labelMonth);
+        return false;
     }
 
-    birthDate.setDate(DAY.value);
-});
+    // valida fevereiro
+    if (inputMonth === normalYearMonths[1] && inputDay > 28){
+        // valida ano bissexto
+        if (!bYear) {
+            alert("Not leap year")
+            return false;
+        }
+        return false;
+    }
+    return true;
+}
 
-MONTH.addEventListener('blur', () => {
-    const mes = document.getElementById('mes');
+function validateYear(inputYear){
+    if (inputYear < 1100 || inputYear > currentYear) {
+        applyErrorStyle(YEAR, errorMsgYear, labelYear);
+        return false;
+    }
+    return true;
+}
 
-    if (MONTH.value == '') {
-        DIV.innerHTML = "This field is required";
-        mes.append(DIV);
-
-    } else if (MONTH.value < 1 || MONTH.value > 12) {
-        DIV.innerHTML = "Must be a valid month";
-        mes.append(DIV);
-
-    } else if (MONTH.value > 0 && MONTH.value < 13) {
-        MONTH.value == '';
+function calculate(inputDay, inputMonth, inputYear){
+    if (!bYear){
+        if(inputDay > currentDay){
+            currentDay += normalYearMonths[currentMonth - 1];
+            currentMonth = currentMonth - 1;
+        }
+    } else { // avaliar esse código
+        currentDay += leapYearMonths[currentMonth - 1];
+        currentMonth = currentMonth - 1;
     }
 
-    if (DAY.value > 28 && MONTH.value == 2){
-        DIV.innerHTML = "February has 28/29 days";
-        mes.append(DIV);
-
-    } else if (MONTH.value === null){
-        DIV.innerHTML = '';
+    if (inputMonth > currentMonth){
+        currentMonth = currentMonth + 12;
+        currentYear = currentYear - 1;
     }
 
-    birthDate.setMonth(MONTH.value-1);
-});
+    const totalYears = currentYear - inputYear;
+    const totalMonths = currentMonth - inputMonth;
+    const totalDays = currentDay - inputDay;
 
-YEAR.addEventListener('blur', () => {
-    const ano  = document.getElementById('ano');
-
-    if (YEAR.value == '') {
-        DIV.innerHTML = "This field is required";
-        ano.append(DIV);
-
-    } else if (YEAR.value < now.getFullYear() - 120 || YEAR.value > now.getFullYear()){
-        DIV.innerHTML = "Must be in the past";
-        ano.append(DIV);
-    }
-
-    if (YEAR.value % 4 == 0){
-        console.log("ano bissexto");
-    }
-    birthDate.setFullYear(YEAR.value);
-
-    if (YEAR.value != ''){
-        calculate(birthDate);
-    }
-});
-
-function calculate(birthDate){
-    let novaData = new Date(now - birthDate);
-
-    if (((novaData.getFullYear()).toString() - 1970) < 100){
-        (YEARS.innerHTML = (novaData.getFullYear()).toString() - 1970);
-    }
-
-    MONTHS.innerHTML = novaData.getMonth();
-    DAYS.innerHTML = (novaData.getDate());
+    printResults(totalYears, totalMonths, totalDays);
 }
 
 
+button.addEventListener('click', () => {
+
+   let inputDay = DAY.value.trim();
+   let inputMonth = MONTH.value.trim();
+   let inputYear = YEAR.value.trim();
+
+   if (inputDay === "" || inputMonth === "" || inputYear === ""){
+    alert("Please, enter valid date");
+    return;
+   }
+
+   if (validateDay(inputDay) && validateMonth(inputMonth, inputDay) && validateYear(inputYear)) {
+        removeErrorStyle();
+        calculate(inputDay, inputMonth, inputYear);
+   }
+
+
+});
