@@ -29,7 +29,7 @@ body {
 
 main {
     background-color:#FFF;
-
+    width: 95%;
     padding: 2em 1.5em;
     border-radius: 20px 20px 100px 20px;
 }
@@ -138,10 +138,11 @@ p > span {
     }
 
     .inputs {
-        width: 100%;
+        /*width: 100%;
         display: inline-grid;
         grid-template-columns: repeat(4, 23%);
-        gap: 2.5rem;
+        gap: 2.5rem;*/
+
 
         > label {
             color: var(--labelColors);
