@@ -40,6 +40,11 @@ hr {
     border-top: 1.5px solid hsl(0, 0%, 86%);
 }
 
+.items {
+    border: 1px solid black;
+    height:min-content;
+}
+
 .inputs {
     display: flex;
     flex-direction: row;
@@ -129,6 +134,11 @@ p > span {
 
 
 @media screen and (min-width: 600px){
+    body {
+        width: 100vw;
+        height: 90vh;
+        padding-top: 2rem;
+    }
 
     main {
         width: 60em;
@@ -181,8 +191,9 @@ p > span {
     button {
         width: 7rem;
         height: 7rem;
-        bottom: 116px;
-        left: 730px;
+        bottom: 8.8em;
+        left: 55em;
+
     }
 
     button:hover {
