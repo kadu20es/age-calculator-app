@@ -15,18 +15,22 @@
 <body>
   <main>
     <form class="inputs">
-      <label for="day" class="day-label">DAY
-        <input type="text" name="day" id="day" placeholder="DD"  maxlength="2" minlength="1" autocomplete="off">
+
+      <div class="day">
+        <p class="label">DAY</p>
+        <input type="text" name="day" id="day" placeholder="DD"  maxlength="2" minlength="1" autocomplete="off"/>
         <p class="error-msg-day">Must be a valid day</p>
-      </label>
-      <label for="month" class="month-label">MONTH
-        <input type="text" name="month" id="month" placeholder="MM"  maxlength="2" minlength="1" autocomplete="off">
+      </div>
+      <div class="month">
+        <p for="month" class="label">MONTH</p>
+        <input type="text" name="month" id="month" placeholder="MM"  maxlength="2" minlength="1" autocomplete="off"/>
         <p class="error-msg-month">Must be a valid month</p>
-      </label>
-      <label for="year" class="year-label">YEAR
-        <input type="text" name="year" id="year" placeholder="YYYY" maxlength="4" minlength="4" autocomplete="off">
+      </div>
+      <div class="year">
+        <p for="year" class="label">YEAR</p>
+        <input type="text" name="year" id="year" placeholder="YYYY" maxlength="4" minlength="4" autocomplete="off"/>
         <p class="error-msg-year">Must be in past</p>
-      </label>
+      </div>
     </form>
 
 

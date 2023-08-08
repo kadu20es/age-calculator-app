@@ -51,40 +51,40 @@ hr {
     gap: 1rem;
     justify-content: flex-start;
     text-transform: uppercase;
+}
 
-    > label {
-        color: var(--labelColors);
-        font-size: 0.8rem;
-        font-weight: bold;
+.label {
+    color: var(--labelColors);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
 
-        > input {
-            width: 100%;
-            height: 48px;
-            border-radius: 7px;
-            padding-left: 0.9rem;
-            font-size: 1rem;
-            font-weight: 700;
-            border: 2px solid var(--borderColors);
-        }
+input {
+    width: 100%;
+    height: 48px;
+    border-radius: 7px;
+    padding-left: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid var(--borderColors);
+}
 
-        > input:focus {
-            border: 2px solid #ce94e6 !important;
-        }
+input:focus {
+    border: 2px solid #ce94e6 !important;
+}
 
-        .input-error {
-            border: 1px solid #FF5555;
-        }
+.input-error {
+    border: 1px solid #FF5555;
+}
 
-        > .error-msg-day, .error-msg-month, .error-msg-year {
-            color: #FF5555;
-            font-size: 0.7rem;
-            font-weight: 400;
-            font-style: italic;
-            text-transform: capitalize;
-            margin-top: 0.5rem;
-            display: none;
-        }
-    }
+.error-msg-day, .error-msg-month, .error-msg-year {
+    color: #FF5555;
+    font-size: 0.7rem;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: capitalize;
+    margin-top: 0.5rem;
+    display: none;
 }
 
 button {
@@ -148,20 +148,24 @@ p > span {
 
     .inputs {
         width: 100%;
-        display: inline-grid;
-        grid-template-columns: repeat(4, 23%);
+        /*display: grid;
+        grid-template-columns: repeat(4, 23%);*/
         gap: 2.5rem;
+    }
 
 
-        > label {
+
+
+    .label {
             color: var(--labelColors);
             font-size: 1.1rem;
             margin-bottom: 0.350rem;
             margin-left: 5px;
             font-weight: bold;
             display: block;
+    }
 
-            > input {
+    input {
                 margin-top: 10px;
                 width: 11rem;
                 height: 80px;
@@ -170,14 +174,15 @@ p > span {
                 font-size: 2rem;
                 font-weight: bold;
                 border: 2px solid var(--borderColors);
+                display: block;
 
             }
 
-            > input:hover {
+    input:hover {
                 border: 2px solid #ce94e6 !important;
             }
 
-            > .error {
+    .error {
                 text-align: center;
                 color: #FF5555;
                 font-size: 0.6rem;
@@ -185,8 +190,7 @@ p > span {
                 font-weight:lighter;
                 margin: 10px 0;
             }
-        }
-    }
+
 
     button {
         width: 7rem;
