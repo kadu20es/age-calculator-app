@@ -132,17 +132,11 @@ p > span {
 
     main {
         width: 60rem;
-        height: 80%;
         padding: 3.5rem;
         border-radius: 2rem 2rem 15rem 2rem;
     }
 
     .inputs {
-        /*display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        justify-content: flex-start;*/
-
         width: 100%;
         display: inline-grid;
         grid-template-columns: repeat(4, 23%);
